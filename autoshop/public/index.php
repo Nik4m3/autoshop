@@ -65,7 +65,9 @@ function makeSelectSql() {
     $sql = "SELECT * FROM $table";
     return $sql;
 }
+
 function makeInsertSql($data) {
+    $a = 'ОШИБКА ВВОДА ДАННЫХ';
     $table = Flight::get('baseTable');
     if (isset($data['category']) && !empty($data['category'])) {
         $dataArray['category'] = $data['category'][0];
@@ -74,6 +76,8 @@ function makeInsertSql($data) {
         foreach ($data['subcategory'] as $key => $value) {
             if ($value == 1) {
                 $dataArray[$key] = $value;
+            } else {
+                $dataArray[$key] = $a;
             }
         }
     }
