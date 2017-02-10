@@ -81,7 +81,10 @@ function makeInsertSql($data) {
 
     if (isset($data['subcategory']) && !empty($data['subcategory'])) {
         foreach ($data['subcategory'] as $key => $value) {
-            $dataArray[$key] = $value;
+            if ($value == 1) {
+                $dataArray[$key] = $value;
+            }
+
         }
     }
 
