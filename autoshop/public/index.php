@@ -67,8 +67,7 @@ function makeSelectSql() {
 }
 
 function makeInsertSql($data) {
-    $a = 'ОШИБКА ВВОДА ДАННЫХ';
-    $table = Flight::get('baseTable');
+       $table = Flight::get('baseTable');
     if (isset($data['category']) && !empty($data['category'])) {
         $dataArray['category'] = $data['category'][0];
     }
@@ -77,7 +76,7 @@ function makeInsertSql($data) {
             if ($value == 1) {
                 $dataArray[$key] = $value;
             } else {
-                $dataArray[$key] = $a;
+                exit('Произошла ошибка записи в базу данных , пожалуйста, вернитесь на главную страницу');
             }
         }
     }
