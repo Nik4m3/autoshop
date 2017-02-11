@@ -79,10 +79,6 @@ function makeInsertSql($data) {
                 echo 'Ошибка ввода данных, попробуйте снова';
                 Flight::render('base.php', compact('result'), 'content');
                 Flight::render('layout.php', ['title' =>'База автомобилей ', 'header' => 'База данных']);
-                $sqlSelect = makeSelectSql();
-                $resultSelect = execSql($sqlSelect, 'select');
-                $tableBody = $resultSelect['description'];
-                Flight::render('table.php', ['tableBody' => compact('tableBody'), 'tableHeaders' => Flight::get('russianTableHeaders')]);
                 Flight::stop;
             }
         }
@@ -155,11 +151,12 @@ Flight::route('/base', function () {
         $result = execSql($sql, 'insert');
     }
     Flight::render('base.php', compact('result'), 'content');
-    Flight::render('layout.php', ['title' =>'База автомобилей ', 'header' => 'База данных']);
+    Flight::render('layout.php', ['title' => 'База автомобилей ', 'header' => 'База данных']);
     $sqlSelect = makeSelectSql();
     $resultSelect = execSql($sqlSelect, 'select');
     $tableBody = $resultSelect['description'];
     Flight::render('table.php', ['tableBody' => compact('tableBody'), 'tableHeaders' => Flight::get('russianTableHeaders')]);
+
 });
 Flight::route('/remove', function () {
     $userData = Flight::request()->data;
