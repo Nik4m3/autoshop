@@ -76,7 +76,13 @@ function makeInsertSql($data) {
             if ($value == 1) {
                 $dataArray[$key] = $value;
             } else {
-                echo '<meta http-equiv="Refresh" content="2; URL=http://localhost:8000/base">'.'ERROR , TRY AGAIN';
+                echo 'Ошибка ввода данных, попробуйте снова';
+                Flight::render('base.php', compact('result'), 'content');
+                Flight::render('layout.php', ['title' =>'База автомобилей ', 'header' => 'База данных']);
+                $sqlSelect = makeSelectSql();
+                $resultSelect = execSql($sqlSelect, 'select');
+                $tableBody = $resultSelect['description'];
+                Flight::render('table.php', ['tableBody' => compact('tableBody'), 'tableHeaders' => Flight::get('russianTableHeaders')]);
                 exit;
             }
         }
