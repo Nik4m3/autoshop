@@ -83,7 +83,7 @@ function makeInsertSql($data) {
                 $resultSelect = execSql($sqlSelect, 'select');
                 $tableBody = $resultSelect['description'];
                 Flight::render('table.php', ['tableBody' => compact('tableBody'), 'tableHeaders' => Flight::get('russianTableHeaders')]);
-                exit;
+                Flight::stop;
             }
         }
     }
