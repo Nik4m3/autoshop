@@ -76,9 +76,8 @@ function makeInsertSql($data) {
             if ($value == 1) {
                 $dataArray[$key] = $value;
             } else {
-                echo '<p style="color:red"><big>Произошла ошибка, введите данные снова</big></p>';
-                Flight::render('base.php', compact('result'), 'content');
-                Flight::render('layout.php', ['title' =>'База автомобилей ', 'header' => 'База данных']);
+                echo '<p style="color:#ff3a1c"><big>Произошла ошибка, введите данные снова</big></p>';
+                getfly();
                 Flight::stop;
             }
         }
@@ -140,6 +139,10 @@ function execSql($sql, $type)
     }
     return $result;
 }
+function getFly(){
+    Flight::render('base.php', compact('result'), 'content');
+    Flight::render('layout.php', ['title' => 'База автомобилей ', 'header' => 'База данных']);
+}
 Flight::route('GET /', function () {
     Flight::render('main.php', [], 'content');
     Flight::render('layout.php', ['title' => 'База авто - Главная страница', 'header' => 'Добро пожаловать в автобазу']);
@@ -150,8 +153,8 @@ Flight::route('/base', function () {
         $sql = makeInsertSql($data);
         $result = execSql($sql, 'insert');
     }
-    Flight::render('base.php', compact('result'), 'content');
-    Flight::render('layout.php', ['title' => 'База автомобилей ', 'header' => 'База данных']);
+
+getfly();
     $sqlSelect = makeSelectSql();
     $resultSelect = execSql($sqlSelect, 'select');
     $tableBody = $resultSelect['description'];
