@@ -76,7 +76,7 @@ function makeInsertSql($data) {
             if ($value == 1) {
                 $dataArray[$key] = $value;
             } else {
-                echo 'Ошибка ввода данных, попробуйте снова';
+                echo '<p style="color:red"><big>Произошла ошибка, введите данные снова</big></p>';
                 Flight::render('base.php', compact('result'), 'content');
                 Flight::render('layout.php', ['title' =>'База автомобилей ', 'header' => 'База данных']);
                 Flight::stop;
