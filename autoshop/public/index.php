@@ -76,7 +76,8 @@ function makeInsertSql($data) {
             if ($value == 1) {
                 $dataArray[$key] = $value;
             } else {
-                exit('Произошла ошибка записи в базу данных , пожалуйста, вернитесь на главную страницу');
+                echo '<meta http-equiv="Refresh" content="2; URL=http://localhost:8000/base">'.'ERROR , TRY AGAIN';
+                exit;
             }
         }
     }
